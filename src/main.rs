@@ -1,21 +1,8 @@
-use sudoku::Grid;
+#[allow(dead_code, unused)]
+use sudoku::{Coordinate, Grid};
 
 fn main() {
-    let empty_grid: Grid = Grid::from([
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]);
-    let _ = empty_grid.display(empty_grid.check_errors());
-    println!();
-
-    let start_grid: Grid = Grid::from([
+    let start_grid = Grid::from([
         [5, 3, 0, 0, 7, 0, 0, 0, 0],
         [6, 0, 0, 1, 9, 5, 0, 0, 0],
         [0, 9, 8, 0, 0, 0, 0, 6, 0],
@@ -26,10 +13,9 @@ fn main() {
         [0, 0, 0, 4, 1, 9, 0, 0, 5],
         [0, 0, 0, 0, 8, 0, 0, 7, 9],
     ]);
-    let _ = start_grid.display(start_grid.check_errors());
-    println!();
+    println!("{start_grid}");
 
-    let filled_grid: Grid = Grid::from([
+    let incorrect_grid = Grid::from([
         [5, 3, 4, 6, 7, 8, 9, 1, 2],
         [6, 7, 6, 1, 9, 5, 3, 4, 8],
         [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -40,5 +26,5 @@ fn main() {
         [2, 8, 7, 4, 1, 9, 6, 3, 5],
         [3, 4, 5, 2, 8, 7, 1, 7, 9],
     ]);
-    let _ = filled_grid.display(filled_grid.check_errors());
+    incorrect_grid.display_errors(incorrect_grid.errors());
 }

@@ -1,4 +1,4 @@
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default, Debug)]
 pub struct Cell {
     value: u8,
     locked: bool,
@@ -12,18 +12,17 @@ impl std::fmt::Display for Cell {
         }
     }
 }
-impl Cell {
-    pub fn new() -> Self {
+impl From<u8> for Cell {
+    fn from(value: u8) -> Self {
         Cell {
-            value: 0,
+            value: if value > 8 { 0 } else { value },
             locked: false,
         }
     }
-    pub fn from(value: u8) -> Self {
-        Cell {
-            value,
-            locked: false,
-        }
+}
+impl Cell {
+    pub fn new() -> Self {
+        Cell::default()
     }
     pub fn set(&mut self, value: u8) -> Result<u8, &'static str> {
         if self.locked {
