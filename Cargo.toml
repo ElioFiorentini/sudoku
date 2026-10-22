@@ -1,6 +1,13 @@
 [package]
-name = "sudoku"
+name = "sudoku_tools"
 version = "0.1.0"
 edition = "2024"
+authors = ["Elio Fiorentini <elio.fiorentini1@proton.me>"]
+description = "This crate provides tools to help you solve sudoku puzzles. (It does not solve them directly)"
+readme = "README.md"
+license = "GPL-3.0"
+repository = "https://github.com/ElioFiorentini/sudoku_tools"
+keywords = ["sudoku"]
+categories = ["games"]
 
 [dependencies]

@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "sudoku"
+name = "sudoku_tools"
 version = "0.1.0"

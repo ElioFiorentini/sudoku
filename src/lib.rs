@@ -10,12 +10,10 @@
 #![warn(rustdoc::missing_crate_level_docs)]
 #![warn(rustdoc::unescaped_backticks)]
 #[allow(dead_code, unused)]
-/// Sudoku solving tools.
-pub mod sudoku {
-    /// Sudoku grid representation.
-    pub mod grid;
-    // Sudoku grid states handler.
-    mod grid_layout;
-}
-pub use sudoku::grid::Coordinate;
-pub use sudoku::grid::Grid;
+/// Sudoku grid representation.
+pub mod grid;
+/// Sudoku grid states handler.
+pub mod grid_handler;
+
+pub use grid::Coordinate;
+pub use grid::Grid;

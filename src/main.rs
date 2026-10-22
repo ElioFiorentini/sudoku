@@ -1,5 +1,5 @@
 #[allow(dead_code, unused)]
-use sudoku::{Coordinate, Grid};
+use sudoku_tools::{Coordinate, Grid};
 
 fn main() {
     let start_grid = Grid::from([
