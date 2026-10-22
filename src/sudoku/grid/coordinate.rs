@@ -11,14 +11,13 @@
 /// ```
 /// let grid = Grid::new();
 /// let coord = Coordinate { x: 4, y: 2 };
-/// println!("The value at {} is {}.", coord, grid[coordinate].value());
+/// println!("The value at {} is {}.", coord, grid[coord].value());
 /// ```
+/// or
 /// ```
 /// let grid = Grid::new();
-/// match grid.set(Coordinate { x: 4, y: 2 }, 1) {
-///     Ok(v) => println!("Successfully set the cell, old value was {v}."),
-///     Err(e) => println!("Error: {e}."),
-/// };
+/// let coord = Coordinate { x: 4, y: 2 };
+/// println!("The value at {} is {}.", coord, grid.get(coord).value());
 /// ```
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default, Debug)]
 pub struct Coordinate {

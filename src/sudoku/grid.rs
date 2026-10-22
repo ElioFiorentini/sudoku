@@ -109,8 +109,10 @@ impl Grid {
         //! # Examples
         //! ```
         //! let grid = Grid::new();
-        //! match grid.set(Coordinate { x: 4, y: 2 }, 0) {
-        //!     Ok(v) => println!("Successfully set the cell, old value was {v}."),
+        //! let coord = Coordinate { x: 4, y: 2 };
+        //! let value = 1;
+        //! match grid.set(coord, value) {
+        //!     Ok(v) => println!("Successfully set the cell at {coord} with {value}, old value was {v}."),
         //!     Err(e) => println!("Error: {e}."),
         //! };
         //! ```

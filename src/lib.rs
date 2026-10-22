@@ -1,6 +1,6 @@
 //! Sudoku solving tools.
 //!
-//! This crate provides tools to help you solve sudoku puzzles, not solve it directly.
+//! This crate provides tools to help you solve sudoku puzzles, not solve it directly.\
 //! Provided tools are:
 //! - an error checker
 //! - a way to lock the grid
