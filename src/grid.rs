@@ -10,6 +10,7 @@ mod coordinate;
 /// 0 means the cell is empty.
 /// # Examples
 /// ```
+/// # use sudoku_tools::Grid;
 /// let grid = Grid::from([
 ///     [5, 3, 0, 0, 7, 0, 0, 0, 0],
 ///     [6, 0, 0, 1, 9, 5, 0, 0, 0],
@@ -94,8 +95,10 @@ impl Grid {
         //!
         //! # Examples
         //! ```
+        //! # use sudoku_tools::Grid;
         //! let grid = Grid::new();
         //! print!("{}", grid);
+        //! ```
         Grid::default()
     }
     pub fn set(&mut self, coordinate: Coordinate, value: u8) -> Result<u8, &'static str> {
@@ -108,7 +111,8 @@ impl Grid {
         //! - the cell at `coordinate` is locked
         //! # Examples
         //! ```
-        //! let grid = Grid::new();
+        //! # use sudoku_tools::{Coordinate, Grid};
+        //! let mut grid = Grid::new();
         //! let coord = Coordinate { x: 4, y: 2 };
         //! let value = 1;
         //! match grid.set(coord, value) {
@@ -119,13 +123,14 @@ impl Grid {
         coordinate.check()?;
         self[coordinate].set(value)
     }
-    pub fn get(&mut self, coordinate: Coordinate) -> Result<u8, &'static str> {
+    pub fn get(self, coordinate: Coordinate) -> Result<u8, &'static str> {
         //! Get the value in the cell at `coordinate`.
         //!
         //! # Errors
         //! Returns an error if [`coordinate.check()`](Coordinate::check()) returns an error.
         //! # Examples
         //! ```
+        //! # use sudoku_tools::{Coordinate, Grid};
         //! let grid = Grid::new();
         //! match grid.get(Coordinate { x: 4, y: 2 }) {
         //!     Ok(v) => println!("The cell contains {v}."),
@@ -141,7 +146,8 @@ impl Grid {
         //! Locked cells cannot be modified.
         //! # Examples
         //! ```
-        //! let grid = Grid::from([
+        //! # use sudoku_tools::{Coordinate, Grid};
+        //! let mut grid = Grid::from([
         //!     [5, 3, 0, 0, 7, 0, 0, 0, 0],
         //!     [6, 0, 0, 1, 9, 5, 0, 0, 0],
         //!     [0, 9, 8, 0, 0, 0, 0, 6, 0],
@@ -176,7 +182,8 @@ impl Grid {
         //!
         //! # Examples
         //! ```
-        //! let grid = Grid::from([
+        //! # use sudoku_tools::{Coordinate, Grid};
+        //! let mut grid = Grid::from([
         //!     [5, 3, 0, 0, 7, 0, 0, 0, 0],
         //!     [6, 0, 0, 1, 9, 5, 0, 0, 0],
         //!     [0, 9, 8, 0, 0, 0, 0, 6, 0],
@@ -212,7 +219,8 @@ impl Grid {
         //! The grid is full when no empty cell remains.
         //! # Examples
         //! ```
-        //! let grid = Grid::from([
+        //! # use sudoku_tools::{Coordinate, Grid};
+        //! let mut grid = Grid::from([
         //!     [0, 1, 1, 1, 1, 1, 1, 1, 1],
         //!     [1, 1, 1, 1, 1, 1, 1, 1, 1],
         //!     [1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -245,6 +253,7 @@ impl Grid {
         //! The highlighting uses ANSI Escape Codes to set the background of error containing cells to red.
         //! # Examples
         //! ```
+        //! # use sudoku_tools::Grid;
         //! let incorrect_grid = Grid::from([
         //!     [5, 3, 4, 6, 7, 8, 9, 1, 2],
         //!     [6, 7, 6, 1, 9, 5, 3, 4, 8],
@@ -314,6 +323,7 @@ impl Grid {
         //!
         //! # Examples
         //! ```
+        //! # use sudoku_tools::Grid;
         //! let incorrect_grid = Grid::from([
         //!     [5, 3, 4, 6, 7, 8, 9, 1, 2],
         //!     [6, 7, 6, 1, 9, 5, 3, 4, 8],

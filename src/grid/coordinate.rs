@@ -1,4 +1,4 @@
-/// Represents 2d coordinates.
+/// Represents 2d coordinates in a sudoku grid.
 ///
 /// Contains an `x` value and a `y` value.\
 /// These values are represented using [`u8`] as they are supposed
@@ -9,15 +9,20 @@
 /// Beware when using this as [`Index`](std::ops::Index) may panic if the coordinates are out of bounds of the [`Grid`](super::Grid).
 /// # Examples
 /// ```
+/// # use sudoku_tools::{Coordinate, Grid};
 /// let grid = Grid::new();
 /// let coord = Coordinate { x: 4, y: 2 };
 /// println!("The value at {} is {}.", coord, grid[coord].value());
 /// ```
 /// or
 /// ```
+/// # use sudoku_tools::{Coordinate, Grid};
 /// let grid = Grid::new();
 /// let coord = Coordinate { x: 4, y: 2 };
-/// println!("The value at {} is {}.", coord, grid.get(coord).value());
+/// match grid.get(coord) {
+///     Ok(value) => println!("The value at {} is {}.", coord, value),
+///     Err(e) => eprintln!("Error: {e}."),
+/// }
 /// ```
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default, Debug)]
 pub struct Coordinate {
@@ -47,8 +52,10 @@ impl Coordinate {
         //! Doing `Coordinate::new(4, 2)` is the same as doing `Coordinate { x: 4, y: 2 }`.
         //! # Examples
         //! ```
+        //! # use sudoku_tools::Coordinate;
         //! let coord = Coordinate::new(4, 2);
         //! print!("{}", coord);
+        //! ```
         Coordinate { x: x, y: y }
     }
 
@@ -57,6 +64,20 @@ impl Coordinate {
         //!
         //! # Errors
         //! Returns an error if `x` or `y` is > 8.
+        //! # Examples
+        //! ```
+        //! # use sudoku_tools::Coordinate;
+        //! let coord = Coordinate::new(4, 2);
+        //! match coord.check() {
+        //!     Err(e) => eprintln!("Error: {e}"),
+        //!     _ => (),
+        //! }
+        //! let coord = Coordinate::new(23, 16);
+        //! match coord.check() {
+        //!     Err(e) => eprintln!("Error: {e}"),
+        //!     _ => (),
+        //! }
+        //! ```
         if self.x > 8 || self.y > 8 {
             Err("out of bound coordinates, must be >= 0 and <= 8")
         } else {
@@ -69,6 +90,7 @@ impl Coordinate {
         //!
         //! # Examples
         //! ```
+        //! # use sudoku_tools::Coordinate;
         //! for row in Coordinate::rows() {
         //!     for cell_coord in row {
         //!         print!("{} ", cell_coord);
@@ -195,6 +217,7 @@ impl Coordinate {
         //!
         //! # Examples
         //! ```
+        //! # use sudoku_tools::Coordinate;
         //! for col in Coordinate::columns() {
         //!     for cell_coord in col {
         //!         print!("{} ", cell_coord);
@@ -321,8 +344,9 @@ impl Coordinate {
         //!
         //! # Examples
         //! ```
-        //! for box in Coordinate::boxes() {
-        //!     for cell_coord in box {
+        //! # use sudoku_tools::Coordinate;
+        //! for sudoku_box in Coordinate::boxes() {
+        //!     for cell_coord in sudoku_box {
         //!         print!("{} ", cell_coord);
         //!     }
         //!     println!();
