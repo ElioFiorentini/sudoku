@@ -339,7 +339,7 @@ impl Grid {
         //! dbg!(incorrect_grid.errors());
         //! ```
         let mut errors: Vec<Coordinate> = Vec::with_capacity(80);
-        self.check_coordinates(Coordinate::boxes(), &mut errors);
+        self.check_coordinates(Coordinate::rows(), &mut errors);
         self.check_coordinates(Coordinate::columns(), &mut errors);
         self.check_coordinates(Coordinate::boxes(), &mut errors);
         errors.sort();
